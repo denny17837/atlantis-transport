@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Atlantis Transport — Virtuelle Spedition</title>
+  <meta name="description" content="Atlantis Transport — Virtuelle Spedition. Fuhrpark, Konvois, Partner & Kontakt." />
+  <link rel="icon" href="logo.png" />
+  <style>
+    /* -----------------------------
+       Atlantis Transport — Single HTML
+       - Farben & schnelle Anpassung mit CSS-Variablen
+       - Alle Sektionen sind klar kommentiert zum Anpassen
+       ----------------------------- */
+
+    :root{
+      --primary: #0a59a8;      /* dunkles Blau (Logo-ähnlich) */
+      --primary-2: #1e8ad6;    /* helleres Blau */
+      --accent: #8ea6b3;       /* silber/akzent */
+      --bg: #f7fbff;
+      --card: #ffffff;
+      --radius: 12px;
+      --maxwidth: 1100px;
+      --text: #213142;
+      --muted: #6d7b86;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--text);background:var(--bg)}
+
+    /* Header / Navigation */
+    header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.8));backdrop-filter: blur(4px);border-bottom:1px solid rgba(20,30,40,0.04)}
+    .nav{max-width:var(--maxwidth);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:54px;width:auto;display:block}
+    .brand h1{font-size:18px;margin:0;color:var(--primary)}
+
+    nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a:hover{background:rgba(10,89,168,0.06)}
+
+    /* mobile */
+    .menu-toggle{display:none;background:none;border:0;font-size:20px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 20px;max-width:var(--maxwidth);margin:0 auto}
+    .hero .intro{padding:18px}
+    .hero h2{color:var(--primary);font-size:36px;margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 0 18px;line-height:1.5}
+    .cta{display:flex;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--primary),var(--primary-2));color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(30,138,214,0.12);color:var(--primary)}
+
+    .hero .logo-wrap{display:flex;justify-content:center;align-items:center}
+    .hero .logo-wrap img{max-width:100%;height:auto;border-radius:20px;box-shadow:0 8px 30px rgba(6,30,60,0.08)}
+
+    /* Sections */
+    section{max-width:var(--maxwidth);margin:40px auto;padding:18px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 20px rgba(30,40,60,0.04)}
+
+    /* Fleet grid */
+    .fleet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .truck{overflow:hidden;border-radius:12px}
+    .truck img{width:100%;height:160px;object-fit:cover;display:block}
+    .truck h4{margin:10px 0 6px}
+    .truck p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Convoys table */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px 8px;text-align:left;border-bottom:1px solid rgba(6,30,60,0.04)}
+    th{color:var(--primary)}
+
+    /* Partners */
+    .partners{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .partner{height:60px;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(10,89,168,0.06),transparent);display:flex;align-items:center;justify-content:center;min-width:120px}
+
+    /* Contact */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form input, form textarea{padding:10px;border-radius:8px;border:1px solid rgba(20,30,40,0.08);font-size:15px}
+    form textarea{grid-column:1/ -1;min-height:120px}
+
+    /* Footer */
+    footer{padding:28px 20px;background:transparent;border-top:1px solid rgba(20,30,40,0.04);text-align:center}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:20px}
+      nav ul{display:none}
+      .menu-toggle{display:block}
+      form{grid-template-columns:1fr}
+      .hero h2{font-size:28px}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <!-- Ersetze logo.png mit deinem Logo in gleicher Ordnerstruktur -->
+        <img src="logo.png" alt="Atlantis Transport Logo" />
+        <div>
+          <h1>Atlantis Transport</h1>
+          <div class="small muted">Virtuelle Spedition • ETS2 / ATS</div>
+        </div>
+      </div>
+
+      <nav aria-label="Hauptnavigation">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
+        <ul id="main-nav">
+          <li><a href="#home">Start</a></li>
+          <li><a href="#about">Über uns</a></li>
+          <li><a href="#fleet">Fuhrpark</a></li>
+          <li><a href="#convoys">Konvois</a></li>
+          <li><a href="#partners">Partner</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / START -->
+    <section id="home" class="hero">
+      <div class="intro">
+        <h2>Willkommen bei Atlantis Transport</h2>
+        <p>Wir sind eine virtuelle Spedition (ETS2 / ATS) — konvois, events und eine freundliche Community. Schau dich um und werde Teil unseres Teams!</p>
+
+        <div class="cta">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Kontakt aufnehmen</button>
+          <a class="btn btn-ghost" href="#fleet">Fuhrpark ansehen</a>
+        </div>
+      </div>
+
+      <div class="logo-wrap">
+        <!-- Optionales größeres Logo. Ersetze durch hochauflösendes Logo (logo.png oder logo-large.png) -->
+        <img src="logo.png" alt="Atlantis Transport Logo groß" />
+      </div>
+    </section>
+
+    <!-- ÜBER UNS -->
+    <section id="about">
+      <div class="card">
+        <h3>Über uns</h3>
+        <p class="muted">Atlantis Transport wurde gegründet, um virtuelle Fahrer zu vernetzen, gemeinsam Konvois zu fahren und Spaß am Simulieren zu haben. Unsere Werte: Zuverlässigkeit, Gemeinschaft und Fairplay.</p>
+
+        <p>Wir organisieren regelmäßige Konvois, Trainingsfahrten und spezielle Events. Neue Fahrer sind jederzeit willkommen — egal ob Einsteiger oder erfahrener Fahrer.</p>
+      </div>
+    </section>
+
+    <!-- FUHRPARK -->
+    <section id="fleet">
+      <h3>Unser Fuhrpark</h3>
+      <p class="muted">Ein Auszug aus unserem digitalen Fuhrpark. Du kannst hier Bilder, Mod-Namen und Fahrer-Namen ergänzen.</p>
+
+      <div class="fleet-grid">
+        <!-- Beispiel-Truck-Karten: ersetze src mit deinen Bildern unter images/ -->
+        <article class="truck card">
+          <img src="images/truck1.jpg" alt="Scania R ATL edition" />
+          <div style="padding:10px">
+            <h4>Scania R – Atlantis Design</h4>
+            <p class="muted">Fahrer: Dennis • Motor: V8 • Spezifikation: Fernverkehr</p>
+          </div>
+        </article>
+
+        <article class="truck card">
+          <img src="images/truck2.jpg" alt="Volvo FH" />
+          <div style="padding:10px">
+            <h4>Volvo FH</h4>
+            <p class="muted">Fahrer: Anna • Motor: I6 • Einsatz: Schnelltransporte</p>
+          </div>
+        </article>
+
+        <article class="truck card">
+          <img src="images/truck3.jpg" alt="MAN TGX" />
+          <div style="padding:10px">
+            <h4>MAN TGX</h4>
+            <p class="muted">Fahrer: Lukas • Motor: V8 • Einsatz: Schwertransporte</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- KONVOIS -->
+    <section id="convoys">
+      <div class="card">
+        <h3>Konvois & Events</h3>
+        <p class="muted">Hier erscheinen kommende Konvois. Aktualisiere die Tabelle mit Datum, Startzeit, Route und Ansprechpartner.</p>
+
+        <table>
+          <thead>
+            <tr><th>Datum</th><th>Zeit</th><th>Route</th><th>Ansprechpartner</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2025-09-05</td><td>19:00</td><td>Berlin — Hamburg</td><td>Dennis</td></tr>
+            <tr><td>2025-09-12</td><td>20:00</td><td>Le Havre — Rotterdam</td><td>Anna</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </section>
+
+    <!-- PARTNER -->
+    <section id="partners">
+      <h3>Unsere Partner</h3>
+      <div class="card partners">
+        <!-- Ersetze mit echten Partner-Logos oder Links -->
+        <div class="partner">Partner 1</div>
+        <div class="partner">Partner 2</div>
+        <div class="partner">Partner 3</div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact">
+      <div class="card">
+        <h3>Kontakt</h3>
+        <p class="muted">Schreib uns oder folge uns auf Discord. Alternativ kannst du das Formular unten nutzen — beim Absenden öffnet sich dein E-Mail-Programm (kein Backend notwendig).</p>
+
+        <form id="contact-form" onsubmit="return handleContact(event)">
+          <input type="text" id="name" name="name" placeholder="Dein Name" required />
+          <input type="email" id="email" name="email" placeholder="E‑Mail (für Rückantwort)" required />
+          <input type="text" id="subject" name="subject" placeholder="Betreff" />
+          <textarea id="message" name="message" placeholder="Deine Nachricht" required></textarea>
+          <button type="submit" class="btn btn-primary">Nachricht senden</button>
+          <button type="button" class="btn btn-ghost" onclick="copyDiscord()">Discord-Einladung kopieren</button>
+        </form>
+
+        <p class="small muted" style="margin-top:12px">E‑Mail Adresse zum Ändern: <strong id="site-email">info@atlantistransport.de</strong></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="small muted">© <span id="year"></span> Atlantis Transport — Virtuelle Spedition • Alle Rechte vorbehalten</div>
+  </footer>
+
+  <script>
+    // -----------------------------
+    // Kleine JS-Hilfsfunktionen
+    // -----------------------------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.querySelector('.menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    toggle && toggle.addEventListener('click', ()=>{
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      if(mainNav.style.display === 'flex') mainNav.style.display = '';
+      else mainNav.style.display = 'flex';
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+
+    // Contact form: open mail client using mailto: (keine Backend-Integration)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Kontakt über Website';
+      const message = document.getElementById('message').value.trim();
+      const to = document.getElementById('site-email').textContent.trim();
+
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+      const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      // öffnet Mailprogramm
+      window.location.href = mailto;
+      return false;
+    }
+
+    // Discord copy helper (setze hier deinen Invite-Link ein)
+    const DISCORD_INVITE = 'https://discord.gg/DEIN_INVITE_LINK';
+    function copyDiscord(){
+      navigator.clipboard && navigator.clipboard.writeText(DISCORD_INVITE).then(()=>{
+        alert('Discord-Einladung in die Zwischenablage kopiert!');
+      }, ()=>{
+        prompt('Kopiere den Link manuell:', DISCORD_INVITE);
+      });
+    }
+
+  </script>
+</body>
+</html>
